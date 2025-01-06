@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      .form-group label {
+        font-size: 14px;
+        color: #555;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      button:active {
+        background-color: #1e7e34;
+      }
+
+      p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Cadastro</h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.username.label }} {{ form.username }}
+        </div>
+        <div class="form-group">
+          {{ form.password1.label }} {{ form.password1 }}
+        </div>
+        <div class="form-group">
+          {{ form.password2.label }} {{ form.password2 }}
+        </div>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p>Já possui uma conta? <a href="/accounts/login/">Acesse aqui</a>.</p>
+    </div>
+  </body>
+</html>

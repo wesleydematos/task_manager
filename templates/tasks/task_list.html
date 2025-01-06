@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minhas Tarefas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+
+      .task-details {
+        flex-grow: 1;
+      }
+
+      .task-status {
+        font-weight: bold;
+        color: green;
+      }
+
+      .task-status.incomplete {
+        color: red;
+      }
+
+      .btn {
+        padding: 8px 12px;
+        margin: 0 5px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #45a049;
+      }
+
+      .btn.delete {
+        background-color: #f44336;
+      }
+
+      .btn.delete:hover {
+        background-color: #d32f2f;
+      }
+
+      .link {
+        text-align: center;
+        display: block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #4caf50;
+      }
+
+      .link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Minhas Tarefas</h1>
+
+      {% if tasks %}
+      <ul>
+        {% for task in tasks %}
+        <li>
+          <div class="task-details">
+            <strong>{{ task.title }}</strong> - {{ task.description }}<br />
+            <span
+              class="task-status {% if task.completed %}complete{% else %}incomplete{% endif %}"
+            >
+              {% if task.completed %}Concluída{% else %}Pendente{% endif %}
+            </span>
+          </div>
+          <div class="task-actions">
+            <a href="{% url 'edit_task' task.id %}" class="btn">Editar</a>
+            <a href="{% url 'delete_task' task.id %}" class="btn delete"
+              >Excluir</a
+            >
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>Nenhuma tarefa encontrada.</p>
+      {% endif %}
+
+      <a class="link" href="/create/">Criar Nova Tarefa</a>
+    </div>
+  </body>
+</html>
