@@ -63,6 +63,22 @@
       .link:hover {
         text-decoration: underline;
       }
+
+      .logout-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .logout-container form button {
+        width: fit-content;
+        background-color: #f44336;
+        color: white;
+      }
+
+      .logout-container form button:hover {
+        background-color: #d32f2f;
+      }
     </style>
   </head>
   <body>
@@ -74,5 +90,13 @@
       </form>
       <a class="link" href="/list/">Listar Tarefas</a>
     </div>
+    {% if user.is_authenticated %}
+    <div class="logout-container">
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+    {% endif %}
   </body>
 </html>
